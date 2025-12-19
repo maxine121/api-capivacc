@@ -1,0 +1,9 @@
+#ignorar a pasta de módulos locais
+node_modules
+
+#ignorar arquivos do Git
+.git
+.gitignore
+
+#ignorar arquivos de ambiente
+.env

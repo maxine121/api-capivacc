@@ -1,0 +1,30 @@
+/*
+  Warnings:
+
+  - You are about to drop the column `descricao` on the `Vacina` table. All the data in the column will be lost.
+  - You are about to drop the column `dosesRecomendadas` on the `Vacina` table. All the data in the column will be lost.
+  - You are about to drop the column `fabricante` on the `Vacina` table. All the data in the column will be lost.
+
+*/
+-- CreateEnum
+CREATE TYPE "BairrosRecife" AS ENUM ('AFLITOS', 'AFOGADOS', 'AGUA_FRIA', 'ALTO_JOSE_BONIFACIO', 'ALTO_JOSE_DO_PINHO', 'ALTO_DO_MANDU', 'ALTO_DO_PASCOAL', 'ALTO_SANTA_TEREZINHA', 'APIPUCOS', 'AREIAS', 'ARRUDA', 'BARRO', 'BEBERIBE', 'BENFICA', 'BOA_VIAGEM', 'BOA_VISTA', 'BOMBA_DO_HEMETERIO', 'BONGI', 'BRASILIA_TEIMOSA', 'BREJO_DO_BEBERIBE', 'BREJO_DA_GUABIRABA', 'CABANGA', 'CACOTE', 'CAJUEIRO', 'CAMPINA_DO_BARRETO', 'CAMPO_GRANDE', 'CASA_AMARELA', 'CASA_FORTE', 'CAXANGA', 'CIDADE_UNIVERSITARIA', 'COELHOS', 'COHAB', 'COQUE', 'COQUEIRAL', 'CORDEIRO', 'CORREGO_DO_JENIPAPO', 'CURADO', 'DERBY', 'DOIS_IRMAOS', 'DOIS_UNIDOS', 'ENCRUZILHADA', 'ENGENHO_DO_MEIO', 'ENTRA_A_PULSO', 'ESPINHEIRO', 'ESTANCIA', 'FUNDAO', 'GRACAS', 'GUABIRABA', 'HIPODROMO', 'IBURA', 'ILHA_JOANA_BEZERRA', 'ILHA_DO_LEITE', 'ILHA_DO_RETIRO', 'IMBIRIBEIRA', 'IPSEP', 'IPUTINGA', 'JAQUEIRA', 'JARDIM_SAO_PAULO', 'JIQUIA', 'JORDAO', 'LINHA_DO_TIRO', 'MACAXEIRA', 'MADALENA', 'MANGABEIRA', 'MANGUEIRA', 'MONTEIRO', 'MORRO_DA_CONCEICAO', 'MUSTARDINHA', 'NOVA_DESCOBERTA', 'PAISSANDU', 'PARNAMIRIM', 'PASSARINHO', 'PAU_FERRO', 'PEIXINHOS', 'PINA', 'POCO_DA_PANELA', 'PONTE_D_UCHOA', 'PONTO_DE_PARADA', 'PORTO_DA_MADEIRA', 'PRADO', 'RECIFE', 'ROSARINHO', 'SAN_MARTIN', 'SANCHO', 'SANTANA', 'SANTO_AMARO', 'SANTO_ANTONIO', 'SAO_JOSE', 'SITIO_DOS_PINTOS', 'SOLEDADE', 'TAMARINEIRA', 'TEJIPIO', 'TORRE', 'TORREAO', 'TORROES', 'TOTO', 'VARZEA', 'VASCO_DA_GAMA', 'ZUMBI');
+
+-- AlterTable
+ALTER TABLE "Vacina" DROP COLUMN "descricao",
+DROP COLUMN "dosesRecomendadas",
+DROP COLUMN "fabricante";
+
+-- AlterTable
+ALTER TABLE "VacinacaoUsuario" ADD COLUMN     "earnedCapibas" INTEGER NOT NULL DEFAULT 50;
+
+-- AlterTable
+ALTER TABLE "usuarios" ALTER COLUMN "cpf" DROP NOT NULL;
+
+-- CreateTable
+CREATE TABLE "VacinacaoBairro" (
+    "id" SERIAL NOT NULL,
+    "nome" "BairrosRecife" NOT NULL,
+    "amountVaccines" INTEGER NOT NULL,
+
+    CONSTRAINT "VacinacaoBairro_pkey" PRIMARY KEY ("id")
+);
